@@ -45,7 +45,6 @@ Modify the configuration file (config/config.yaml) and the Snakefile (workflow/S
 3. Search for similarity against non-redundant (NR) protein database with [Diamond](https://bio.tools/diamond) blastx
 4. Mapping reads to contigs with [to be added]
 5. Assigning taxonomy with [Megan6] (https://www.computomics.com/services/megan6.html).
-6. Zipping of fastq files with gunzip. 
 
 
 If you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of the original repository.
