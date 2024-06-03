@@ -1,0 +1,41 @@
+# Main entrypoint of the workflow.
+# Please follow the best practices:
+# https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
+# in particular regarding the standardized folder structure mentioned there.
+
+# conda activate snakemake
+# snakemake --use-conda -cores 60 -k -p
+
+
+import os
+import pandas as pd
+
+os.system("workflow/scripts/download_biosample.sh")
+
+
+configfile: "config/config.yaml"
+
+
+samples = pd.read_table(config["samples"])
+
+
+# Define the final output rule
+rule all:
+   input:
+        expand("results/{biosample_ID}/05_{biosample_ID}_meganizer_read_classification.tsv", biosample_ID=samples["samples"]),
+        expand("results/{biosample_ID}/05_{biosample_ID}_meganizer_class_count.tsv", biosample_ID=samples["samples"]),       
+        
+        
+        
+##### Modules #####
+include: "rules/fastq_gunzip.smk"
+include: "rules/trim.smk"
+include: "rules/megahit.smk"
+include: "rules/diamond.smk"
+include: "rules/megan_meganizer.smk"
+include: "rules/megan_export.smk"
+
+
+
+         
+    
