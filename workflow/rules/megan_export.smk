@@ -1,14 +1,14 @@
 rule megan_export:
     input:
-        "results/{biosample_ID}/04_{biosample_ID}_meganizer.daa",
+        "results/{sample_ID}/04_{sample_ID}_meganizer.daa",
     output:
-        taxon="results/{biosample_ID}/05_{biosample_ID}_meganizer_read_classification.tsv",
-        class_count="results/{biosample_ID}/05_{biosample_ID}_meganizer_class_count.tsv",
+        taxon="results/{sample_ID}/05_{sample_ID}_meganizer_read_classification.tsv",
+        class_count="results/{sample_ID}/05_{sample_ID}_meganizer_class_count.tsv",
     log:
-        logO="logs/megan_export/{biosample_ID}.log",
-        logE="logs/megan_export/{biosample_ID}.err.log",
+        logO="logs/megan_export/{sample_ID}.log",
+        logE="logs/megan_export/{sample_ID}.err.log",
     conda:
-        "../envs/diamond-megan.yaml"
+        "../envs/diamond-megan_env.yaml"
     shell:
         """
         daa2info -i {input} -r2c Taxonomy -p -o {output.taxon} > {log.logO} 2> {log.logE}

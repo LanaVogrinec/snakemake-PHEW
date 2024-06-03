@@ -1,15 +1,15 @@
 rule megan_meganizer:
     input:
-        "results/{biosample_ID}/03_{biosample_ID}_megahit_diamond.daa",
+        "results/{sample_ID}/03_{sample_ID}_spades_diamond.daa",
     output:
-        "results/{biosample_ID}/04_{biosample_ID}_meganizer.daa",
+        "results/{sample_ID}/04_{sample_ID}_meganizer.daa",
     log:
-        logO="logs/megan_meganizer/{biosample_ID}.log",
-        logE="logs/megan_meganizer/{biosample_ID}.err.log",
+        logO="logs/megan_meganizer/{sample_ID}.log",
+        logE="logs/megan_meganizer/{sample_ID}.err.log",
     benchmark:
-        "results/{biosample_ID}/04_{biosample_ID}_benchmark_meganizer.txt"
+        "results/{sample_ID}/04_{sample_ID}_benchmark_meganizer.txt"
     conda:
-        "../envs/diamond-megan.yaml"
+        "../envs/diamond-megan_env.yaml"
     threads: 40
 
     shell:
