@@ -1,7 +1,6 @@
-# Snakemake workflow: `project-marchantia`
+# Snakemake workflow: `project PHEW`
 
-A Snakemake workflow designed to search for DNA viruses in high-throughput sequencing data from Marchantia polymorpha.
-This workflow is based on [project-tobamo] (https://github.com/nezapajek/project-tobamo) created by Neža Pajek (https://github.com/nezapajek). 
+A Snakemake workflow for virus detection in metagenomic data from various samples (plants, river water, wastewater). This workflow is based on the workflow from [project-tobamo] (https://github.com/nezapajek/project-tobamo) created by Neža Pajek (https://github.com/nezapajek). 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.3.0-brightgreen.svg)](https://snakemake.github.io)
 
@@ -41,12 +40,12 @@ Modify the configuration file (config/config.yaml) and the Snakefile (workflow/S
 
 ## Workflow
 
-1. Download and merging of all fastq files associated with a Biosample ID from the SRA database. 
-    (script: download_biosample.sh., list of biosample IDs and SRA IDs: biosample_ID.txt)
-2. Quality control and adapter trimming with [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
-3. De Novo Assembly with [megahit](https://www.metagenomics.wiki/tools/assembly/megahit)
-4. Search for similarity against non-redundant (NR) protein database with [Diamond](https://bio.tools/diamond) blastx
+1. Quality control and adapter trimming with [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+2. De Novo Assembly with [SPAdes](https://bio.tools/spades)
+3. Search for similarity against non-redundant (NR) protein database with [Diamond](https://bio.tools/diamond) blastx
+4. Mapping reads to contigs with [to be added]
 5. Assigning taxonomy with [Megan6] (https://www.computomics.com/services/megan6.html).
+6. Zipping of fastq files with gunzip. 
 
 
 If you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of the original repository.
